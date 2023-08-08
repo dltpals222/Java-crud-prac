@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/userManagement.css" id="page-specific-css" />
+  </head>
+  <body>
+    <div id="user-management">
+      <div class="user-management">
+        <!--? Main nav -->
+        <div id="header-user-info" class="header-user-info-style">
+          <div class="user-info-font-style flex-center">회원정보</div>
+          <div id="info-container" class="info-container-style">
+            <button
+              id="info-add"
+              class="div-info div-info-add-style flex-center"
+              onclick="loadModal()"
+            >
+              추가 +
+            </button>
+            <button id="info-update" class="div-info flex-center">선택수정</button>
+            <button id="info-delete" class="div-info flex-center">선택삭제</button>
+            <select
+              name="search"
+              id="user-search"
+              class="div-info flex-center search-style-hight-43"
+            >
+              <option value="name">이름으로 검색</option>
+              <option value="number">번호로 검색</option>
+              <option value="userId">아이디로 검색</option>
+            </select>
+            <div>
+              <input type="text" class="div-info flex-center search-style-hight-43" />
+            </div>
+          </div>
+        </div>
+        <div id="main-table"></div>
+      </div>
+    </div>
+  </body>
+</html>

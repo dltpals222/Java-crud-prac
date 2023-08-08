@@ -5,6 +5,12 @@
   box-sizing: border-box;
 }
 
+.root-style {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
 .user-manager {
   font-weight: 600;
   margin: 10px;
@@ -21,4 +27,12 @@
   margin: 10px;
   padding-left: 20px;
   min-width: 100px;
+}
+
+.user-info {
+  width: 100%;
+  height: fit-content;
+  min-width: 1000px;
+  min-height: 100vh;
+  background-color: rgb(235, 255, 255);
 }
