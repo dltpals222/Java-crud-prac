@@ -39,7 +39,14 @@
 
         <!--? table -->
         <div id="main-table">
-          <div th:each="ulData : ${ulData}" th:id="'t-'+${ulData}"></div>
+          <th:block th:each="ulList, index : ${tagModel.ulList}">
+            <div th:id="'t-'+${ulList}">
+              <div th:text="${tagModel.divName[index.index]}"></div>
+              <ul class="ul-list-style-type">
+                <li></li>
+              </ul>
+            </div>
+          </th:block>
         </div>
       </div>
     </div>

@@ -59,3 +59,7 @@
   width: 100vw;
   overflow-y: auto; /* 초과시 스크롤 */
 }
+
+.ul-list-style-type {
+  list-style-type: none;
+}
