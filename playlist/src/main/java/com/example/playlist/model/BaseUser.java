@@ -1,6 +1,6 @@
 package com.example.playlist.model;
 
-public class ExampleUser {
+public class BaseUser {
   //* 인스턴스 변수
   private String name;
   private int number;
@@ -9,7 +9,7 @@ public class ExampleUser {
   private int score;
 
   //* 생성자 
-  public ExampleUser(String name, int number, String id, Long deposit, int score) {
+  public BaseUser(String name, int number, String id, Long deposit, int score) {
     this.name = name;
     this.number = number;
     this.id = id;
