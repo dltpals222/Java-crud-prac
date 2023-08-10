@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.playlist.model.tagModel;
+
 @Controller
 public class mainController {
   
@@ -15,7 +17,11 @@ public class mainController {
   @GetMapping(value = "/pages/userInfo")
   public String management(Model Model) {
     String[] ulList = new String[] {"checkbox","no","name","number","id","deposit","score"};
-    Model.addAttribute("ulData", ulList);
+    String[] divName = new String[] {"","No","이름","번호","아이디","총 입금액","현스코어"};
+
+    tagModel tagModel = new tagModel(ulList, divName);
+    
+    Model.addAttribute("tagModel", tagModel);
     return "userManagement";
   }
 }
