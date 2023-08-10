@@ -54,12 +54,14 @@
   font-weight: 700;
 }
 
-.mainTable {
-  background-color: rgb(217, 252, 252);
-  width: 100vw;
-  overflow-y: auto; /* 초과시 스크롤 */
-}
-
 .ul-list-style-type {
   list-style-type: none;
+}
+
+.border-solid-black {
+  border: 1px solid black;
+}
+
+#main-table > div > * {
+  border: 1px solid black;
 }

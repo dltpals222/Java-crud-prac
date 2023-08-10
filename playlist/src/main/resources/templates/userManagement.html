@@ -38,12 +38,14 @@
         </div>
 
         <!--? table -->
-        <div id="main-table">
+        <div id="main-table" class="flex-center">
           <th:block th:each="ulList, index : ${tagModel.ulList}">
             <div th:id="'t-'+${ulList}">
               <div th:text="${tagModel.divName[index.index]}"></div>
               <ul class="ul-list-style-type">
-                <li></li>
+                <th:block th:each="i : ${loop}">
+                  <li th:text="'적어봅니다.' + ${i}"></li>
+                </th:block>
               </ul>
             </div>
           </th:block>
