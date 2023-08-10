@@ -36,49 +36,10 @@
             </div>
           </div>
         </div>
+
+        <!--? table -->
         <div id="main-table">
-          <div id="t-checkbox">
-            <div></div>
-            <ul>
-              <li th:></li>
-            </ul>
-          </div>
-          <div id="t-no">
-            <div>No</div>
-            <ul>
-              <li th:></li>
-            </ul>
-          </div>
-          <div id="t-name">
-            <div>이름</div>
-            <ul>
-              <li th:></li>
-            </ul>
-          </div>
-          <div id="t-number">
-            <div>번호</div>
-            <ul>
-              <li th:></li>
-            </ul>
-          </div>
-          <div id="t-id">
-            <div>아이디</div>
-            <ul>
-              <li th:></li>
-            </ul>
-          </div>
-          <div id="t-deposit">
-            <div>총 입금액</div>
-            <ul>
-              <li th:></li>
-            </ul>
-          </div>
-          <div id="t-score">
-            <div>현스코어</div>
-            <ul>
-              <li th:></li>
-            </ul>
-          </div>
+          <div th:each="ulData : ${ulData}" th:id="'t-'+${ulData}"></div>
         </div>
       </div>
     </div>
