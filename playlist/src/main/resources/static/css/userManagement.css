@@ -64,14 +64,65 @@
   list-style-type: none;
 }
 
-#main-table > div > * {
+/*todo main-table style */
+#main-table > div {
   border: 1px solid black;
 }
 
-#main-table > div:nth-child(1) {
+#main-table > div > div {
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  height: 1.75em;
+  font-size: 1.1em;
+}
+
+#main-table > div > ul > li {
+  border-bottom: 1px solid black;
+  height: 1.5em;
+  padding-left: 0.75em;
+}
+
+#main-table > div > ul > li:first-child {
+  border-top: 1px solid black;
+}
+
+#main-table > div:first-child > ul > li {
+  padding: 0;
+}
+
+/* 체크박스 */
+#main-table > div:first-child {
+  border-left: 2px solid black;
   width: 3%;
 }
 
+/* No */
 #main-table > div:nth-child(2) {
-  width: 10%;
+  width: 7%;
+}
+
+/* 이름 */
+#main-table > div:nth-child(3) {
+  width: 16%;
+}
+
+/* 번호 */
+#main-table > div:nth-child(4) {
+  width: 11%;
+}
+
+/* 아이디 */
+#main-table > div:nth-child(5) {
+  width: 16%;
+}
+
+/* 총 입금액 */
+#main-table > div:nth-child(6) {
+  width: 26%;
+}
+
+/* 현스코어 */
+#main-table > div:last-child {
+  border-right: 2px solid black;
+  width: 16%;
 }
