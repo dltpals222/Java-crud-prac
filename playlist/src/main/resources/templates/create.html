@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+    <!--? Info_Create Modal -->
+    <div id="Create-modal-container" class="modal">
+      <div class="modal-content flex-center">
+
+        <form action="/userInfo" method="post" id="addInfoForm">
+          <div>
+
+            <th:block th:each="ulList, index : ${tagModel.ulList}">
+              <div th:id="'t-'+${ulList}">
+                <div th:text="${tagModel.divName[index.index]}" ></div>
+                  <th:block th:each="i : ${loop}">
+                      <input type="text" name="'txt-'+${i}" id="'txt-'+${i}">
+                  </th:block>
+              </div>
+            </th:block>
+            
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+  </body>
+</html>
