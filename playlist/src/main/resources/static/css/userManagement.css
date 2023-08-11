@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+.flex-justify-center-align-start {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
 /*todo userManagement style */
 .user-management {
   width: 100%;
@@ -58,10 +64,14 @@
   list-style-type: none;
 }
 
-.border-solid-black {
+#main-table > div > * {
   border: 1px solid black;
 }
 
-#main-table > div > * {
-  border: 1px solid black;
+#main-table > div:nth-child(1) {
+  width: 3%;
+}
+
+#main-table > div:nth-child(2) {
+  width: 10%;
 }

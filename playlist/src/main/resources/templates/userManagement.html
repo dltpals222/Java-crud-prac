@@ -38,13 +38,18 @@
         </div>
 
         <!--? table -->
-        <div id="main-table" class="flex-center">
+        <div id="main-table" class="flex-justify-center-align-start width-height-100">
           <th:block th:each="ulList, index : ${tagModel.ulList}">
             <div th:id="'t-'+${ulList}">
               <div th:text="${tagModel.divName[index.index]}"></div>
               <ul class="ul-list-style-type">
-                <th:block th:each="i : ${loop}">
-                  <li th:text="'적어봅니다.' + ${i}"></li>
+                <th:block th:each="i : ${loop}" th:if="${ulList == 'checkbox'}">
+                  <li>
+                    <input type="checkbox" th:name="'cb-' + ${i}" th:id="'cb-' + ${i}">
+                  </li>
+                </th:block>
+                <th:block th:each="i : ${loop}" th:unless="${ulList == 'checkbox'}">
+                  <li th:text="'0'+${i}"></li>
                 </th:block>
               </ul>
             </div>
