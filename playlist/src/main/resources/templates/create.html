@@ -12,9 +12,10 @@
     <div id="Create-modal-container" class="modal">
       <div class="modal-content flex-center">
 
-        <form action="/userInfo" method="post" id="addInfoForm" class="flex-center">
+        <form action="/userInfo" method="post" id="addInfoForm" >
 
             <!--* 입력값 -->
+            <div class="flex-center">
             <th:block th:each="ulList, index : ${tagModel.ulList}">
               <div th:id="'t-'+${ulList}" class="flex-center flex-direction-column">
                 <div th:text="${tagModel.divName[index.index]}" class="flex-center"></div>
@@ -25,11 +26,12 @@
                 
               </div>
             </th:block>
+            </div>
 
             <!--* button 2개 -->
-            <div>
-              <button>회원 정보에 추가하기</button>
-              <button>취소</button>
+            <div id="btn-ctnr" class="btn-ctnr flex-center">
+              <button type="button" class="info-add-btn flex-center">회원 정보에 추가하기</button>
+              <button type="button" class="info-add-cancel flex-center" id="cancel">취소</button>
             </div>
             
         </form>
