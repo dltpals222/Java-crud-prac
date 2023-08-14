@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="/css/create.css">
   </head>
   <body>
     <div id="root">
@@ -11,19 +12,26 @@
     <div id="Create-modal-container" class="modal">
       <div class="modal-content flex-center">
 
-        <form action="/userInfo" method="post" id="addInfoForm">
-          <div>
+        <form action="/userInfo" method="post" id="addInfoForm" class="flex-center">
 
+            <!--* 입력값 -->
             <th:block th:each="ulList, index : ${tagModel.ulList}">
-              <div th:id="'t-'+${ulList}">
-                <div th:text="${tagModel.divName[index.index]}" ></div>
+              <div th:id="'t-'+${ulList}" class="flex-center flex-direction-column">
+                <div th:text="${tagModel.divName[index.index]}" class="flex-center"></div>
+
                   <th:block th:each="i : ${loop}">
-                      <input type="text" name="'txt-'+${i}" id="'txt-'+${i}">
+                      <input type="text" th:name="'txt-'+${i}" th:id="'txt-'+${i}">
                   </th:block>
+                
               </div>
             </th:block>
+
+            <!--* button 2개 -->
+            <div>
+              <button>회원 정보에 추가하기</button>
+              <button>취소</button>
+            </div>
             
-          </div>
         </form>
 
       </div>
