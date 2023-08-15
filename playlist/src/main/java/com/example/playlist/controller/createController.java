@@ -1,9 +1,5 @@
 package com.example.playlist.controller;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,4 +23,10 @@ public class createController {
   public String exampleString(Model model) {
     return "exampleModal";
   }
+
+  @GetMapping("/load-example-content")
+  public String loadExampleContent() {
+      return "example-content";
+  }
+  
 }
