@@ -36,3 +36,24 @@
   min-height: 100vh;
   background-color: rgb(235, 255, 255);
 }
+
+/** 공통부분 */
+.width-50vw-important {
+  width: 50vw !important;
+}
+
+.width-10percent {
+  width: 10%;
+}
+
+.width-15percent {
+  width: 15%;
+}
+
+.width-35percent {
+  width: 35%;
+}
+
+.width-webkit-fill-available {
+  width: -webkit-fill-available;
+}

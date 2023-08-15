@@ -1,17 +1,5 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 .ul-list-style-type {
   list-style-type: none;
-}
-
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .flex-justify-center-align-start {
@@ -22,6 +10,15 @@
 
 .flex-direction-column {
   flex-direction: column;
+}
+
+/** 모달부분 */
+.height-70vh {
+  height: 70vh;
+}
+
+.width-50vw-important {
+  width: 50vw !important;
 }
 
 /** input 부분 */
@@ -36,11 +33,7 @@
   width: 100vw;
 }
 
-#addInfoForm > div > div {
-  width: 20%;
-}
-
-#addInfoForm > div > div > div {
+#addInfoForm > div > div > div > div {
   border: 1px solid black;
   width: 100%;
   height: 2em;

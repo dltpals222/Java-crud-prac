@@ -15,10 +15,7 @@
           <div id="info-container" class="info-container-style">
             <button
               type="button"
-              id="info-add"
-              class="div-info div-info-add-style flex-center"
-              data-toggle="modal"
-              data-target="@create-modal"
+              class="btn btn-primary" data-toggle="modal" data-target="#create-modal"
             >
               추가 +
             </button>
@@ -44,17 +41,17 @@
           <th:block th:each="ulList, index : ${tagModel.ulList}">
             <div th:id="'t-'+${ulList}">
               <div th:text="${tagModel.divName[index.index]}" class="flex-center"></div>
-              <ul class="ul-list-style-type">
+              <ul class="ul-list-style-type" style="margin: 0;">
 
                 <!-- 체크박스 -->
-                <th:block th:each="i : ${loop}" th:if="${ulList == 'checkbox'}">
+                <th:block th:each="i : ${#numbers.sequence(0,19)}" th:if="${ulList == 'checkbox'}">
                   <li class="flex-center">
                     <input type="checkbox" th:name="'cb-' + ${i}" th:id="'cb-' + ${i}">
                   </li>
                 </th:block>
 
                 <!-- 체크박스 이외 -->
-                <th:block th:each="i : ${loop}" th:unless="${ulList == 'checkbox'}">
+                <th:block th:each="i : ${#numbers.sequence(0,19)}" th:unless="${ulList == 'checkbox'}">
                   <li th:text="'0'+${i}"></li>
                 </th:block>
                 
@@ -64,6 +61,60 @@
         </div>
 
       </div>
-    </div>
+    
+      <!--? Info_Create Modal -->
+      <div
+        class="modal fade"
+        id="create-modal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content width-50vw-important">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">정보 입력하기</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <form action="/userInfo" method="post" id="addInfoForm" >
+            <div class="modal-body">                
+              <!--* 입력값 -->
+              <div class="flex-center">
+                <th:block th:each="ulList, index : ${tagModel.ulList}">
+                  <th:block th:if="${index.index > 1}">
+                  <div 
+                  th:id="'t-'+${ulList}" 
+                  class="flex-center flex-direction-column"
+                  th:classappend="${ulList == 'name'} ? 'width-15percent' : (${ulList == 'number'} ? 'width-10percent' : (${ulList == 'deposit'} ? 'width-35percent' : ''))"
+                  >
+                  <div th:text="${tagModel.divName[index.index]}" class="flex-center"></div>
+                  
+                  <!--* input 10번 반복 -->
+                  <th:block th:each="i : ${#numbers.sequence(0,9)}">
+                      <input 
+                        type="text" 
+                        th:name="'txt-'+${i}" 
+                        th:id="'txt-'+${i}" 
+                        class="width-webkit-fill-available"
+                      >
+                    </th:block>
+                    
+                  </div>
+                  </th:block>
+                </th:block>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+              <button type="submit" class="btn btn-primary">회원 정보에 추가하기</button>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div> 
   </body>
 </html>

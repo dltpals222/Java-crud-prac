@@ -15,18 +15,8 @@ public class createController {
 
     tagModel tagModel = new tagModel(ulList, divName);
 
-    model.addAttribute("tagModel", tagModel);
+    model.addAttribute("tagModelTwo", tagModel);
     return "create";
   }
 
-  @GetMapping(value= "/example")
-  public String exampleString(Model model) {
-    return "exampleModal";
-  }
-
-  @GetMapping("/load-example-content")
-  public String loadExampleContent() {
-      return "example-content";
-  }
-  
 }
