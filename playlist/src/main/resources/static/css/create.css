@@ -24,7 +24,8 @@
   flex-direction: column;
 }
 
-input {
+/** input 부분 */
+#addInfoForm > div > div > input {
   border: 1px solid black;
   width: 100%;
   height: 2em;

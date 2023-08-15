@@ -16,11 +16,9 @@ public class createController {
   public String createPage(Model model) {
     String[] ulList = new String[] {"name","number","id","deposit","score"};
     String[] divName = new String[] {"이름","번호","아이디","총 입금액","현스코어"};
-    List<Integer> loop = IntStream.rangeClosed(1, 10).boxed().collect(Collectors.toList());
 
     tagModel tagModel = new tagModel(ulList, divName);
 
-    model.addAttribute("loop", loop);
     model.addAttribute("tagModel", tagModel);
     return "create";
   }
