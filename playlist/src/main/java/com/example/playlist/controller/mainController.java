@@ -19,15 +19,15 @@ public class mainController {
   }
   
   @GetMapping(value = "/pages/userInfo")
-  public String management(Model Model) {
+  public String management(Model model) {
     String[] ulList = new String[] {"checkbox","no","name","number","id","deposit","score"};
     String[] divName = new String[] {"","No","이름","번호","아이디","총 입금액","현스코어"};
     List<Integer> loop = IntStream.rangeClosed(1, 20).boxed().collect(Collectors.toList());
 
     tagModel tagModel = new tagModel(ulList, divName);
     
-    Model.addAttribute("loop", loop);
-    Model.addAttribute("tagModel", tagModel);
+    model.addAttribute("loop", loop);
+    model.addAttribute("tagModel", tagModel);
     return "userManagement";
   }
 }

@@ -22,4 +22,9 @@ public class createController {
     model.addAttribute("tagModel", tagModel);
     return "create";
   }
+
+  @GetMapping(value= "/example")
+  public String exampleString(Model model) {
+    return "exampleModal";
+  }
 }

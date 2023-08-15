@@ -1,15 +1,11 @@
-window.addEventListener("DOMContentLoaded", function () {
-  // 추가 버튼 클릭 이벤트
-  var infoAddBtn = document.getElementById("info-add");
-  infoAddBtn.addEventListener("click", function () {
-    var createModal = document.getElementById("Create-modal-container");
-    createModal.style.display = "block";
+/* userManagement.js */
+$(document).ready(function () {
+  $("#info-add").on("click", function () {
+    $("#create-modal").show(); // create-modal을 보여줍니다.
   });
 
-  // 취소 버튼 클릭 이벤트
-  var cancelBtn = document.getElementById("cancel");
-  cancelBtn.addEventListener("click", function () {
-    var createModal = document.getElementById("Create-modal-container");
-    createModal.style.display = "none";
+  // 모달의 "취소" 버튼을 눌렀을 때 모달을 숨깁니다.
+  $("#cancel").on("click", function () {
+    $("#create-modal").hide(); // create-modal을 숨깁니다.
   });
 });
