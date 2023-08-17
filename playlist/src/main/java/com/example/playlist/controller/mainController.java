@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.playlist.model.tagModel;
 
+
 @Controller
 public class mainController {
   
@@ -23,5 +24,5 @@ public class mainController {
     
     model.addAttribute("tagModel", tagModel);
     return "userManagement";
-  }
+  }  
 }
