@@ -83,29 +83,59 @@
           <form action="/api/userInfo" method="post" id="addInfoForm" >
             <div class="modal-body">                
               <!--* 입력값 -->
-              <div class="flex-center">
-                <th:block th:each="ulList, index : ${tagModel.ulList}">
-                  <th:block th:if="${index.index > 1}">
-                  <div 
-                  th:id="'t-'+${ulList}" 
-                  class="flex-center flex-direction-column"
-                  th:classappend="${ulList == 'name'} ? 'width-15percent' : (${ulList == 'number'} ? 'width-10percent' : (${ulList == 'deposit'} ? 'width-35percent' : ''))"
-                  >
-                  <div th:text="${tagModel.divName[index.index]}" class="flex-center"></div>
-                  
+              <div class="flex-center flex-direction-column">
+                <div id="crtn-tagName" class="flex-center" style="width: 100%;">
+                  <th:block th:each="ulList, index : ${tagModel.ulList}">
+                    <th:block th:if="${index.index > 1}">
+                    <div 
+                    th:id="'t-'+${ulList}" 
+                    class="flex-center flex-direction-column"
+                    th:classappend="${ulList == 'name'} ? 'width-15percent' : (${ulList == 'number'} ? 'width-10percent' : (${ulList == 'deposit'} ? 'width-35percent' : 'width-20percent'))"
+                    th:text="${tagModel.divName[index.index]}"
+                    >
+                    </div>
+                    </th:block>
+                  </th:block>
+                </div> <!-- id="crtn-tagName" 끝부분 -->
+
+                <div id="ctnr-input">
                   <!--* input 10번 반복 -->
                   <th:block th:each="i : ${#numbers.sequence(0,9)}">
+                    <div th:id="'info-'+${i}" class="flex-center">
                       <input 
                         type="text" 
-                        th:name="'txt-'+${i}" 
-                        th:id="'txt-'+${i}" 
-                        class="width-webkit-fill-available"
+                        name="name" 
+                        id="name" 
+                        class="width-15percent"
                       >
-                    </th:block>
-                    
-                  </div>
+                      <input 
+                        type="number" 
+                        name="number" 
+                        id="number" 
+                        class="width-10percent" 
+                      >
+                      <input 
+                        type="text" 
+                        name="id" 
+                        id="id" 
+                        class="width-20percent" 
+                      >
+                      <input 
+                        type="number" 
+                        name="deposit" 
+                        id="deposit" 
+                        class="width-35percent" 
+                      >
+                      <input 
+                        type="number" 
+                        name="score" 
+                        id="score" 
+                        class="width-20percent" 
+                      >
+                    </div>
                   </th:block>
-                </th:block>
+                </div> <!-- id=ctnr-info 끝부분 -->
+
               </div>
             </div>
             <div class="modal-footer">

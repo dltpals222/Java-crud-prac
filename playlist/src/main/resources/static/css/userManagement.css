@@ -130,13 +130,24 @@
 /*! create css */
 
 /** input 부분 */
-#addInfoForm > div > div > div > div {
+#crtn-tagName > div {
   border: 1px solid rgb(118, 118, 118);
-  width: 100%;
   height: 2em;
 }
 
 .modal-posotion {
   left: -33%;
   min-width: 150%;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
