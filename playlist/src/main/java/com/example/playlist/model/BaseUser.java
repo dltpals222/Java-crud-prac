@@ -66,6 +66,7 @@ public class BaseUser {
     this.score = score;
   }
 
+  // null값 및 빈 문자열 제거
   public void removeEmptyValues() {
     name = Arrays.stream(name).filter(v -> v != null && !v.trim().isEmpty()).toArray(String[]::new);
     id = Arrays.stream(id).filter(v -> v != null && !v.trim().isEmpty()).toArray(String[]::new);
@@ -74,22 +75,4 @@ public class BaseUser {
     deposit = Arrays.stream(deposit).filter(Objects::nonNull).toArray(Long[]::new);
     score = Arrays.stream(score).filter(Objects::nonNull).toArray(Integer[]::new);
   }
-
-  public void validateAndPrintErrors() {
-    if (name == null || name.length == 0) {
-        System.out.println("이름 값이 빠져있습니다.");
-    }
-    if (number == null || number.length == 0) {
-        System.out.println("번호 값이 빠져있습니다.");
-    }
-    if (id == null || id.length == 0) {
-        System.out.println("ID 값이 빠져있습니다.");
-    }
-    if (deposit == null || deposit.length == 0) {
-        System.out.println("총 입금액 값이 빠져있습니다.");
-    }
-    if (score == null || score.length == 0) {
-        System.out.println("현스코어 값이 빠져있습니다.");
-    }
-}
 }
