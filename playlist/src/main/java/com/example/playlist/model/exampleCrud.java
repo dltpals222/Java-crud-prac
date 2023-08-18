@@ -15,13 +15,13 @@ public class exampleCrud {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int no;
+  private Integer no;
 
   @Column(nullable = false)
   private String name;
 
   @Column(nullable = false)
-  private int number;
+  private Integer number;
 
   @Column(nullable = false)
   private String id;
@@ -30,7 +30,7 @@ public class exampleCrud {
   private Long deposit;
 
   @Column(nullable = false)
-  private int score;
+  private Integer score;
 
 
 }
