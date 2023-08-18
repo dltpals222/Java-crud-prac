@@ -1,6 +1,8 @@
 package com.example.playlist.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class BaseUser {
@@ -74,5 +76,22 @@ public class BaseUser {
     number = Arrays.stream(number).filter(Objects::nonNull).toArray(Integer[]::new);
     deposit = Arrays.stream(deposit).filter(Objects::nonNull).toArray(Long[]::new);
     score = Arrays.stream(score).filter(Objects::nonNull).toArray(Integer[]::new);
+  }
+
+    public List<User> convertToUserList(){
+    List<User> users = new ArrayList<>();
+
+    for(int i = 0; i < this.getName().length; i++){
+      User user = new User();
+      user.setName(this.name[i]);
+      user.setNumber(this.number[i]);
+      user.setId(this.id[i]);
+      user.setDeposit(this.deposit[i]);
+      user.setScore(this.score[i]);
+
+      users.add(user);
+    }
+
+    return users;
   }
 }

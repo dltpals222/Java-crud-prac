@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.example.playlist.model.BaseUser;
+import com.example.playlist.model.User;
 
 @Repository
 public class BaseUserDAO {
@@ -17,15 +17,15 @@ public class BaseUserDAO {
     this.jdbcTemplate = jdbcTemplate;
   }
 
-  public int[] insert(BaseUser baseUser) {
+  public int[] insert(List<User> users) {
     List<Object[]> parameters = new ArrayList<>();
 
-    for(int i = 0; i < baseUser.getName().length; i++) {
-    String name = baseUser.getName()[i];
-    Integer number = baseUser.getNumber()[i];
-    String id = baseUser.getId()[i];
-    Long deposit = baseUser.getDeposit()[i];
-    Integer score = baseUser.getScore()[i];
+    for(User user : users) {
+    String name = user.getName();
+    Integer number = user.getNumber();
+    String id = user.getId();
+    Long deposit = user.getDeposit();
+    Integer score = user.getScore();
 
     parameters.add(new Object[] {name, number,id, deposit, score});
     }
