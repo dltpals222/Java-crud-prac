@@ -2,14 +2,14 @@ package com.example.playlist.model;
 
 public class BaseUser {
   //* 인스턴스 변수
-  private String name;
-  private int number;
-  private String id;
-  private Long deposit;
-  private int score;
+  private String[] name;
+  private Integer[] number;
+  private String[] id;
+  private Long[] deposit;
+  private Integer[] score;
 
   //* 생성자 
-  public BaseUser(String name, int number, String id, Long deposit, int score) {
+  public BaseUser(String[] name, Integer[] number, String[] id, Long[] deposit, Integer[] score) {
     this.name = name;
     this.number = number;
     this.id = id;
@@ -19,47 +19,47 @@ public class BaseUser {
 
   //* getters and setters
   //? name
-  public String getName() {
+  public String[] getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(String[] name) {
     this.name = name;
   }
 
   //? number
-  public int getNumber() {
+  public Integer[] getNumber() {
     return number;
   }
 
-  public void setNumber(int number) {
+  public void setNumber(Integer[] number) {
     this.number = number;
   }
 
   //? id
-  public String getId() {
+  public String[] getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(String[] id) {
     this.id = id;
   }
 
   //? deposit
-  public Long getDeposit() {
+  public Long[] getDeposit() {
     return deposit;
   }
 
-  public void setDeposit(Long deposit) {
+  public void setDeposit(Long[] deposit) {
     this.deposit = deposit;
   }
 
   //? score
-  public int getScore() {
+  public Integer[] getScore() {
     return score;
   }
 
-  public void setScore(int score){
+  public void setScore(Integer[] score){
     this.score = score;
   }
 }
