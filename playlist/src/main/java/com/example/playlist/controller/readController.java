@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.playlist.model.User;
+import com.example.playlist.model.ReadUserModel;
 import com.example.playlist.service.UserFindService;
 
 @Controller
@@ -22,7 +22,7 @@ public class readController {
   @GetMapping(value = "/readInfo")
   public ModelAndView findAllUsers(Model model){
     ModelAndView view = new ModelAndView();
-    List<User> users = userFindService.findAllUsers();
+    List<ReadUserModel> users = userFindService.findAllUsers();
     System.out.println(users);
     model.addAttribute("users", users);
     view.setViewName("userManagement");

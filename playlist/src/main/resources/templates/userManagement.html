@@ -43,16 +43,20 @@
               <div th:text="${tagModel.divName[index.index]}" class="flex-center"></div>
               <ul class="ul-list-style-type" style="margin: 0;">
 
-                <!-- 체크박스 -->
-                <th:block th:each="i : ${#numbers.sequence(0,19)}" th:if="${ulList == 'checkbox'}">
-                  <li class="flex-center">
-                    <input type="checkbox" th:name="'cb-' + ${i}" th:id="'cb-' + ${i}">
-                  </li>
-                </th:block>
+                <th:block th:each="users : ${users}">
 
-                <!-- 체크박스 이외 -->
-                <th:block th:each="i : ${#numbers.sequence(0,19)}" th:unless="${ulList == 'checkbox'}">
-                  <li th:text="'0'+${i}"></li>
+                  <!-- 체크박스 -->
+                  <th:block th:if="${ulList == 'checkbox'}">
+                    <li class="flex-center">
+                      <input type="checkbox" th:name="'cb-' + ${i}" th:id="'cb-' + ${i}">
+                    </li>
+                  </th:block>
+                  
+                  <!-- 체크박스 이외 -->
+                  <th:block th:unless="${ulList == 'checkbox'}">
+                    <li th:if="${ulList == 'no'}" th:text="${users.no}"></li>
+                  </th:block>
+                  
                 </th:block>
                 
               </ul>

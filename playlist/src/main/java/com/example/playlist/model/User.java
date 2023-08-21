@@ -1,6 +1,6 @@
 package com.example.playlist.model;
 
-// 배열의 길이를 맞추기 위한 클래스 생성
+// 유저 정보를 저장하고 관리하기 위한 클래스
 public class User {
   private String name;
   private Integer number;
@@ -8,7 +8,18 @@ public class User {
   private Long deposit;
   private Integer score;
 
-    //* getters and setters
+  //* 기본생성자
+  public User(){}
+
+  //* 생성자
+  public User(String name, Integer number, String id, Long deposit, Integer score){
+    this.name = name;
+    this.number = number;
+    this.id = id;
+    this.deposit = deposit;
+    this.score = score;
+  }
+  //* getters and setters
   //? name
   public String getName() {
     return name;
