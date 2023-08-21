@@ -78,8 +78,9 @@
 
 #main-table > div > ul > li {
   border-bottom: 1px solid black;
-  height: 1.5em;
+  height: 1.75em;
   padding-left: 0.75em;
+  padding-right: 0.75em;
 }
 
 #main-table > div > ul > li:first-child {

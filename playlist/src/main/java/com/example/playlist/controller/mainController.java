@@ -38,8 +38,9 @@ public class mainController {
 
     // read 데이터
     List<ReadUserModel> readUsers = userFindService.findAllUsers();
+    System.out.println("readUsers의 사이즈" + readUsers.size());
     model.addAttribute("users", readUsers);
-    
+    model.addAttribute("usersSize", readUsers.size());
     return view;
   }  
 }
