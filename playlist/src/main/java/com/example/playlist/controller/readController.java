@@ -13,18 +13,19 @@ import com.example.playlist.model.User;
 import com.example.playlist.service.UserFindService;
 
 @Controller
-@RequestMapping(value = "/pages")
+@RequestMapping(value = "/api")
 public class readController {
 
   @Autowired
   private UserFindService userFindService;
 
-  @GetMapping(value = "/userInfo")
+  @GetMapping(value = "/readInfo")
   public ModelAndView findAllUsers(Model model){
     ModelAndView view = new ModelAndView();
     List<User> users = userFindService.findAllUsers();
+    System.out.println(users);
     model.addAttribute("users", users);
-    view.setViewName("users");
+    view.setViewName("userManagement");
     return view;
   }
 }

@@ -37,12 +37,4 @@ public class BaseUserDAO {
     return rowsAffected;
   }
 
-  // // read에서 사용될 메소드
-  // public List<User> read() {
-  //   String sql = "SELECT * FROM exampleCrud";
-  //   return jdbcTemplate.query(sql, )
-
-
-  // }
-
 }
