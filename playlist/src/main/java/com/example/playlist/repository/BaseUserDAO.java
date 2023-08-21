@@ -17,6 +17,7 @@ public class BaseUserDAO {
     this.jdbcTemplate = jdbcTemplate;
   }
 
+  // create에서 사용될 메소드
   public int[] insert(List<User> users) {
     List<Object[]> parameters = new ArrayList<>();
 
@@ -35,5 +36,13 @@ public class BaseUserDAO {
 
     return rowsAffected;
   }
+
+  // // read에서 사용될 메소드
+  // public List<User> read() {
+  //   String sql = "SELECT * FROM exampleCrud";
+  //   return jdbcTemplate.query(sql, )
+
+
+  // }
 
 }
