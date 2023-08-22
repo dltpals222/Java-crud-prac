@@ -15,11 +15,13 @@ import com.example.playlist.service.UserFindService;
 
 @Controller
 @RequestMapping(value = "/pages")
-public class readController {
+public class pageController {
+
   @Autowired
   private UserFindService userFindService;
 
-    @GetMapping(value = "/userInfo")
+  // Read를 위한 Get
+  @GetMapping(value = "/userInfo")
   public ModelAndView management(Model model) {
     // 경로 설정
     ModelAndView view = new ModelAndView();
@@ -39,13 +41,28 @@ public class readController {
     return view;
   }  
 
-    @GetMapping(value = "/pages/update")
+  @GetMapping(value = "/create")
+  public ModelAndView create (Model model){
+    // 경로설정
+    ModelAndView view = new ModelAndView();
+    view.setViewName("create");
+
+    // 표 만들기 위한 정보
+    String[] ulList = new String[] {"checkbox","no","name","number","id","deposit","score"};
+    String[] divName = new String[] {"","No","이름","번호","아이디","총 입금액","현스코어"};
+    tagModel tagModel = new tagModel(ulList, divName);
+    model.addAttribute("tagModel", tagModel);
+
+    return view;
+  }
+
+  @GetMapping(value = "/update")
   public ModelAndView update(Model model) {
     // 경로설정
     ModelAndView view = new ModelAndView();
     view.setViewName("update");
 
-        // 표 만들기 위한 정보
+    // 표 만들기 위한 정보
     String[] ulList = new String[] {"checkbox","no","name","number","id","deposit","score"};
     String[] divName = new String[] {"","No","이름","번호","아이디","총 입금액","현스코어"};
     tagModel tagModel = new tagModel(ulList, divName);
