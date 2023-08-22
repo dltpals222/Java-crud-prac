@@ -14,11 +14,11 @@ import com.example.playlist.repository.BaseUserDAO;
 
 @RestController
 @RequestMapping(value = "/api")
-public class createRestController {
+public class apiRestController {
 
   private final BaseUserDAO baseUserDAO;
 
-  public createRestController(BaseUserDAO baseUserDAO) {
+  public apiRestController(BaseUserDAO baseUserDAO) {
     this.baseUserDAO = baseUserDAO;
   }
 
