@@ -10,7 +10,7 @@
     aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
+      <div class="modal-content width-50vw-important modal-posotion">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">정보 수정</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -21,7 +21,7 @@
           <div class="modal-body">                
             <!--* 입력값 -->
             <div class="flex-center flex-direction-column">
-              <div id="crtn-tagName" class="flex-center" style="width: 100%;">
+              <div class="flex-center crtn-tagName" style="width: 100%;">
                 <th:block th:each="ulList, index : ${tagModel.ulList}">
                   <th:block th:if="${index.index > 1}">
                   <div 
@@ -33,9 +33,9 @@
                   </div>
                   </th:block>
                 </th:block>
-              </div> <!-- id="crtn-tagName" 끝부분 -->
+              </div> <!-- class="crtn-tagName" 끝부분 -->
 
-              <div id="ctnr-input">
+              <div class="ctnr-input">
                 <!--* input 10번 반복 -->
                 <th:block th:each="i : ${#numbers.sequence(0,9)}">
                   <div th:id="'info-'+${i}" class="flex-center">
