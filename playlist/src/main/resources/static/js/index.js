@@ -1,7 +1,6 @@
 /**
  *
  * @param {string} endPoint 엔드포인트 지정
- * @param {string} readPageId 읽어올 페이지의 최상위 id
  * @param {string} insertPageId 읽어온 페이지를 넣을 id
  * @param {string} contentType 기본값은 text/html 그 이외라면 추가
  */
