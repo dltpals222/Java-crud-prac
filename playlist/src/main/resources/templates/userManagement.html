@@ -1,162 +1,152 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="user-management">
-      
-      <div class="user-management">
-        <!--? Main nav -->
-        <div id="header-user-info" class="header-user-info-style">
-          <div class="user-info-font-style flex-center">회원정보</div>
-          <div id="info-container" class="info-container-style">
-            <button
-              type="button"
-              class="btn btn-primary" data-toggle="modal" data-target="#create-modal"
-            >
-              추가 +
-            </button>
-            <button id="info-update" type="button" class="btn btn-primary" data-toggle="modal" data-target="#update-modal">선택수정</button>
-            <button id="info-delete" type="button" class="btn btn-primary" data-toggle="modal" data-target="#delete-modal">선택삭제</button>
-            <select
-              name="search"
-              id="user-search"
-              class="div-info flex-center search-style-hight-43"
-            >
-              <option value="name">이름으로 검색</option>
-              <option value="number">번호로 검색</option>
-              <option value="userId">아이디로 검색</option>
-            </select>
-            <div>
-              <input type="text" class="div-info flex-center search-style-hight-43" />
-            </div>
-          </div>
-        </div>
-
-        <!--? table -->
-        <div id="main-table" class="flex-justify-center-align-start width-height-100">
-          <th:block th:each="ulList, index : ${tagModel.ulList}">
-            <div th:id="'t-'+${ulList}">
-              <div th:text="${tagModel.divName[index.index]}" class="flex-center"></div>
-              <ul class="ul-list-style-type" style="margin: 0;">
-
-                <th:block th:each="users, status : ${users}">
-
-                  <!-- 체크박스 -->
-                  <th:block th:if="${ulList == 'checkbox'}">
-                    <li class="flex-center">
-                      <input type="checkbox" th:name="lang" th:id="'cb-' + ${users.no}" th:value="${users.no}">
-                    </li>
-                  </th:block>
-                  
-                  <!-- 체크박스 이외 -->
-                    <li th:if="${ulList == 'no'}" th:text="${users.no}"></li>
-                    <li th:if="${ulList == 'name'}" th:text="${users.name}"></li>
-                    <li th:if="${ulList == 'number'}" th:text="${users.number}" style="display: flex; justify-content: end;"></li>
-                    <li th:if="${ulList == 'id'}" th:text="${users.id}"></li>
-                    <li th:if="${ulList == 'deposit'}" th:text="${users.deposit}" style="display: flex; justify-content: end;"></li>
-                    <li th:if="${ulList == 'score'}" th:text="${users.score}" style="display: flex; justify-content: end;"></li>
-                  
-                </th:block>
-
-                <th:block th:if="${usersSize < 20}">
-                  <li th:each="i : ${#numbers.sequence(0, 19-usersSize)}"></li>
-                </th:block>
-                
-              </ul>
-            </div>
-          </th:block>
-        </div>
-
-      </div>
-    
-      <!--? Info_Create Modal -->
-      <div
-        class="modal fade"
-        id="create-modal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-        style="width: 110vw;"
-      >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content width-50vw-important modal-posotion">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">정보 입력하기</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          <form action="/api/userInfo" method="post" id="addInfoForm" >
-            <div class="modal-body">                
-              <!--* 입력값 -->
-              <div class="flex-center flex-direction-column">
-                <div id="crtn-tagName" class="flex-center" style="width: 100%;">
-                  <th:block th:each="ulList, index : ${tagModel.ulList}">
-                    <th:block th:if="${index.index > 1}">
-                    <div 
-                    th:id="'t-'+${ulList}" 
-                    class="flex-center flex-direction-column"
-                    th:classappend="${ulList == 'name'} ? 'width-15percent' : (${ulList == 'number'} ? 'width-10percent' : (${ulList == 'deposit'} ? 'width-35percent' : 'width-20percent'))"
-                    th:text="${tagModel.divName[index.index]}"
-                    >
-                    </div>
-                    </th:block>
-                  </th:block>
-                </div> <!-- id="crtn-tagName" 끝부분 -->
-
-                <div id="ctnr-input">
-                  <!--* input 10번 반복 -->
-                  <th:block th:each="i : ${#numbers.sequence(0,9)}">
-                    <div th:id="'info-'+${i}" class="flex-center">
-                      <input 
-                        type="text" 
-                        name="name" 
-                        id="name" 
-                        class="width-15percent"
-                      >
-                      <input 
-                        type="number" 
-                        name="number" 
-                        id="number" 
-                        class="width-10percent" 
-                      >
-                      <input 
-                        type="text" 
-                        name="id" 
-                        id="id" 
-                        class="width-20percent" 
-                      >
-                      <input 
-                        type="number" 
-                        name="deposit" 
-                        id="deposit" 
-                        class="width-35percent" 
-                      >
-                      <input 
-                        type="number" 
-                        name="score" 
-                        id="score" 
-                        class="width-20percent" 
-                      >
-                    </div>
-                  </th:block>
-                </div> <!-- id=ctnr-info 끝부분 -->
-
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-              <button onclick="submitUserInfo()" class="btn btn-primary">회원 정보에 추가하기</button>
-            </div>
-          </form>
-          </div>
+<div id="user-management">
+  
+  <div class="user-management">
+    <!--? Main nav -->
+    <div id="header-user-info" class="header-user-info-style">
+      <div class="user-info-font-style flex-center">회원정보</div>
+      <div id="info-container" class="info-container-style">
+        <button
+          type="button"
+          class="btn btn-primary" data-toggle="modal" data-target="#create-modal"
+        >
+          추가 +
+        </button>
+        <button id="info-update" type="button" class="btn btn-primary" data-toggle="modal" data-target="#update-modal">선택수정</button>
+        <button id="info-delete" type="button" class="btn btn-primary" data-toggle="modal" data-target="#delete-modal">선택삭제</button>
+        <select
+          name="search"
+          id="user-search"
+          class="div-info flex-center search-style-hight-43"
+        >
+          <option value="name">이름으로 검색</option>
+          <option value="number">번호로 검색</option>
+          <option value="userId">아이디로 검색</option>
+        </select>
+        <div>
+          <input type="text" class="div-info flex-center search-style-hight-43" />
         </div>
       </div>
-    </div> 
-  </body>
-</html>
+    </div>
+
+    <!--? table -->
+    <div id="main-table" class="flex-justify-center-align-start width-height-100">
+      <th:block th:each="ulList, index : ${tagModel.ulList}">
+        <div th:id="'t-'+${ulList}">
+          <div th:text="${tagModel.divName[index.index]}" class="flex-center"></div>
+          <ul class="ul-list-style-type" style="margin: 0;">
+
+            <th:block th:each="users, status : ${users}">
+
+              <!-- 체크박스 -->
+              <th:block th:if="${ulList == 'checkbox'}">
+                <li class="flex-center">
+                  <input type="checkbox" th:name="lang" th:id="'cb-' + ${users.no}" th:value="${users.no}">
+                </li>
+              </th:block>
+              
+              <!-- 체크박스 이외 -->
+                <li th:if="${ulList == 'no'}" th:text="${users.no}"></li>
+                <li th:if="${ulList == 'name'}" th:text="${users.name}"></li>
+                <li th:if="${ulList == 'number'}" th:text="${users.number}" style="display: flex; justify-content: end;"></li>
+                <li th:if="${ulList == 'id'}" th:text="${users.id}"></li>
+                <li th:if="${ulList == 'deposit'}" th:text="${users.deposit}" style="display: flex; justify-content: end;"></li>
+                <li th:if="${ulList == 'score'}" th:text="${users.score}" style="display: flex; justify-content: end;"></li>
+              
+            </th:block>
+
+            <th:block th:if="${usersSize < 20}">
+              <li th:each="i : ${#numbers.sequence(0, 19-usersSize)}"></li>
+            </th:block>
+            
+          </ul>
+        </div>
+      </th:block>
+    </div>
+
+  </div>
+
+  <!--? Info_Create Modal -->
+  <div
+    class="modal fade"
+    id="create-modal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+    style="width: 110vw;"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content width-50vw-important modal-posotion">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">정보 입력하기</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <form action="/api/userInfo" method="post" id="addInfoForm" >
+        <div class="modal-body">                
+          <!--* 입력값 -->
+          <div class="flex-center flex-direction-column">
+            <div id="crtn-tagName" class="flex-center" style="width: 100%;">
+              <th:block th:each="ulList, index : ${tagModel.ulList}">
+                <th:block th:if="${index.index > 1}">
+                <div 
+                th:id="'t-'+${ulList}" 
+                class="flex-center flex-direction-column"
+                th:classappend="${ulList == 'name'} ? 'width-15percent' : (${ulList == 'number'} ? 'width-10percent' : (${ulList == 'deposit'} ? 'width-35percent' : 'width-20percent'))"
+                th:text="${tagModel.divName[index.index]}"
+                >
+                </div>
+                </th:block>
+              </th:block>
+            </div> <!-- id="crtn-tagName" 끝부분 -->
+
+            <div id="ctnr-input">
+              <!--* input 10번 반복 -->
+              <th:block th:each="i : ${#numbers.sequence(0,9)}">
+                <div th:id="'info-'+${i}" class="flex-center">
+                  <input 
+                    type="text" 
+                    name="name" 
+                    id="name" 
+                    class="width-15percent"
+                  >
+                  <input 
+                    type="number" 
+                    name="number" 
+                    id="number" 
+                    class="width-10percent" 
+                  >
+                  <input 
+                    type="text" 
+                    name="id" 
+                    id="id" 
+                    class="width-20percent" 
+                  >
+                  <input 
+                    type="number" 
+                    name="deposit" 
+                    id="deposit" 
+                    class="width-35percent" 
+                  >
+                  <input 
+                    type="number" 
+                    name="score" 
+                    id="score" 
+                    class="width-20percent" 
+                  >
+                </div>
+              </th:block>
+            </div> <!-- id=ctnr-info 끝부분 -->
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+          <button onclick="submitUserInfo()" class="btn btn-primary">회원 정보에 추가하기</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div> 
