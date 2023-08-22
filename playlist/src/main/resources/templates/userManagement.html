@@ -19,8 +19,8 @@
             >
               추가 +
             </button>
-            <button id="info-update" class="div-info flex-center">선택수정</button>
-            <button id="info-delete" class="div-info flex-center">선택삭제</button>
+            <button id="info-update" type="button" class="btn btn-primary" data-toggle="modal" data-target="#update-modal">선택수정</button>
+            <button id="info-delete" type="button" class="btn btn-primary" data-toggle="modal" data-target="#delete-modal">선택삭제</button>
             <select
               name="search"
               id="user-search"
@@ -48,7 +48,7 @@
                   <!-- 체크박스 -->
                   <th:block th:if="${ulList == 'checkbox'}">
                     <li class="flex-center">
-                      <input type="checkbox" th:name="'cb-' + ${i}" th:id="'cb-' + ${i}">
+                      <input type="checkbox" th:name="lang" th:id="'cb-' + ${users.no}" th:value="${users.no}">
                     </li>
                   </th:block>
                   
