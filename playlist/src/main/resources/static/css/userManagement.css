@@ -32,11 +32,13 @@
 }
 
 .info-container-style {
-  width: 60%;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
   flex-direction: row;
+}
+
+.info-container-style > button {
+  margin: 3px;
 }
 
 .div-info {
