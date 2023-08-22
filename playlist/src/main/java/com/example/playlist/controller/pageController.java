@@ -20,6 +20,14 @@ public class pageController {
   @Autowired
   private UserFindService userFindService;
 
+  private void initTagModel (Model model){
+    // 표 만들기 위한 정보
+    String[] ulList = new String[] {"checkbox","no","name","number","id","deposit","score"};
+    String[] divName = new String[] {"","No","이름","번호","아이디","총 입금액","현스코어"};
+    tagModel tagModel = new tagModel(ulList, divName);
+    model.addAttribute("tagModel", tagModel);
+  }
+
   // Read를 위한 Get
   @GetMapping(value = "/userInfo")
   public ModelAndView management(Model model) {
@@ -28,10 +36,7 @@ public class pageController {
     view.setViewName("userManagement");
 
     // 표 만들기 위한 정보
-    String[] ulList = new String[] {"checkbox","no","name","number","id","deposit","score"};
-    String[] divName = new String[] {"","No","이름","번호","아이디","총 입금액","현스코어"};
-    tagModel tagModel = new tagModel(ulList, divName);
-    model.addAttribute("tagModel", tagModel);
+    initTagModel(model);
 
     // read 데이터
     List<ReadUserModel> readUsers = userFindService.findAllUsers();
@@ -48,10 +53,7 @@ public class pageController {
     view.setViewName("create");
 
     // 표 만들기 위한 정보
-    String[] ulList = new String[] {"checkbox","no","name","number","id","deposit","score"};
-    String[] divName = new String[] {"","No","이름","번호","아이디","총 입금액","현스코어"};
-    tagModel tagModel = new tagModel(ulList, divName);
-    model.addAttribute("tagModel", tagModel);
+    initTagModel(model);
 
     return view;
   }
@@ -63,10 +65,8 @@ public class pageController {
     view.setViewName("update");
 
     // 표 만들기 위한 정보
-    String[] ulList = new String[] {"checkbox","no","name","number","id","deposit","score"};
-    String[] divName = new String[] {"","No","이름","번호","아이디","총 입금액","현스코어"};
-    tagModel tagModel = new tagModel(ulList, divName);
-    model.addAttribute("tagModel", tagModel);
+    initTagModel(model);
+    
     return view;
   }
 }
