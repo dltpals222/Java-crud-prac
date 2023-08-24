@@ -1,6 +1,5 @@
 package com.example.playlist.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +60,7 @@ public class pageController {
   }
 
   @GetMapping(value = "/update")
-  public ModelAndView update(Model model, @RequestParam(value = "values", required = false) String valuesString) {
+  public ModelAndView update(Model model) {
     // 경로설정
     ModelAndView view = new ModelAndView();
     view.setViewName("update");
