@@ -44,15 +44,15 @@ public class apiRestController {
     return redirectView;
   }
 
-  @PostMapping(value = "update")
-  @ResponseBody
-  public ResponseEntity<List<ReadUserModel>> updateSelectedData(@RequestBody Map<String, List<String>> data){
-    List<String> noList = data.get("values");
+  // @PostMapping(value = "update")
+  // @ResponseBody
+  // public ResponseEntity<List<ReadUserModel>> updateSelectedData(@RequestBody Map<String, List<String>> data){
+  //   List<String> noList = data.get("values");
 
-    System.out.println("values의 값들을 보기 위한 콘솔 : " + noList);
-    List<ReadUserModel> foundUsers = baseUserDAO.findByNoList(noList);
-    System.out.println("foundUsers : " + foundUsers);
+  //   System.out.println("values의 값들을 보기 위한 콘솔 : " + noList);
+  //   List<ReadUserModel> foundUsers = baseUserDAO.findByNoList(noList);
+  //   System.out.println("foundUsers : " + foundUsers); //일단 잘 모르겠으니 남겨둠
 
-    return new ResponseEntity<>(foundUsers, HttpStatus.OK);
-  }
+  //   return new ResponseEntity<>(foundUsers, HttpStatus.OK);
+  // }
 }
