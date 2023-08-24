@@ -1,5 +1,5 @@
 /**
- *
+ *? HTML요소를 index.html에 삽입하기 위한 함수
  * @param {string} endPoint 엔드포인트 지정
  * @param {string} insertPageId 읽어온 페이지를 넣을 id
  * @param {string} contentType 기본값은 text/html 그 이외라면 추가
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //* 유저정보 수정
     await fetchModule("/pages/update", "update-div");
 
-    // update에 사용할 체크박스 값 가져오기
+    //? update에 사용할 체크박스 값 가져오기
     const infoUpdate = document.getElementById("info-update");
     infoUpdate.addEventListener("click", async (e) => {
       e.preventDefault();
