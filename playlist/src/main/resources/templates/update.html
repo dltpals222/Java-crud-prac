@@ -23,11 +23,11 @@
             <div class="flex-center flex-direction-column">
               <div class="flex-center crtn-tagName" style="width: 100%;">
                 <th:block th:each="ulList, index : ${tagModel.ulList}">
-                  <th:block th:if="${index.index > 1}">
+                  <th:block th:if="${index.index >= 1}">
                   <div 
                   th:id="'t-'+${ulList}" 
                   class="flex-center flex-direction-column"
-                  th:classappend="${ulList == 'name'} ? 'width-15percent' : (${ulList == 'number'} ? 'width-10percent' : (${ulList == 'deposit'} ? 'width-35percent' : 'width-20percent'))"
+                  th:classappend="${ulList == 'no'} ? 'width-5percent' : (${ulList == 'name'} ? 'width-15percent' : (${ulList == 'number'} ? 'width-10percent' : (${ulList == 'deposit'} ? 'width-30percent' : 'width-20percent')))"
                   th:text="${tagModel.divName[index.index]}"
                   >
                   </div>
@@ -36,40 +36,52 @@
               </div> <!-- class="crtn-tagName" 끝부분 -->
 
               <div class="ctnr-input">
-                <!--* input 10번 반복 -->
-                <th:block th:each="i : ${#numbers.sequence(0,9)}">
+                <!--* input checkbox 반복 -->
+                <th:block th:each="noList : ${noList}">
+                  <th:block th:each="i : ${#numbers.sequence(0, noListSize)}">
                   <div th:id="'info-'+${i}" class="flex-center">
+                    <div 
+                      id="no" 
+                      class="width-5percent" 
+                      th:text="${noList.no}"
+                    ></div>
                     <input 
                       type="text" 
                       name="name" 
                       id="name" 
                       class="width-15percent"
+                      th:text="${noList.name}"
                     >
                     <input 
                       type="number" 
                       name="number" 
                       id="number" 
                       class="width-10percent" 
+                      th:text="${noList.number}"
                     >
                     <input 
                       type="text" 
                       name="id" 
                       id="id" 
                       class="width-20percent" 
+                      th:text="${noList.id}"
                     >
                     <input 
                       type="number" 
                       name="deposit" 
                       id="deposit" 
-                      class="width-35percent" 
+                      class="width-30percent" 
+                      th:text="${noList.deposit}"
                     >
                     <input 
                       type="number" 
                       name="score" 
                       id="score" 
                       class="width-20percent" 
+                      th:text="${noList.score}"
                     >
                   </div>
+                  </th:block>
                 </th:block>
               </div> <!-- id=ctnr-info 끝부분 -->
 

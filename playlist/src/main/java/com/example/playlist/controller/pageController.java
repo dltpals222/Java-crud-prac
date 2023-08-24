@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -62,13 +60,21 @@ public class pageController {
   }
 
   @GetMapping(value = "/update")
-  public ModelAndView update(Model model) {
+  public ModelAndView update(@RequestParam(value = "noList",required= false) List<Integer> noList,Model model) {
     // 경로설정
     ModelAndView view = new ModelAndView();
     view.setViewName("update");
 
     // 표 만들기 위한 정보
     initTagModel(model);
+
+    // 데이터 처리
+    if(noList != null && !noList.isEmpty()){
+      List<ReadUserModel> foundUsers = userFindService.findByNoList(noList);
+      System.out.println("noList의 길이 : " + foundUsers.size());
+      model.addAttribute("noList", foundUsers);
+      model.addAttribute("noListSize", foundUsers.size());
+    }
 
     // 수정할 데이터
     // List<ReadUserModel> foundUsers = userFindService.findByNoList(selectedValues);
@@ -79,16 +85,14 @@ public class pageController {
     return view;
   }
 
-  @PostMapping(value = "/update")
-  public ModelAndView findByNoList(@RequestParam("selectedValues[]") List<Integer> selectedValues){
-    List<ReadUserModel> readUserModels = userFindService.findByNoList(selectedValues);
+  // @PostMapping(value = "/update")
+  // public ModelAndView findByNoList(@RequestParam("lang") List<Integer> selectedValues){
+  //   List<ReadUserModel> readUserModels = userFindService.findByNoList(selectedValues);
 
-    ModelAndView modelAndView = new ModelAndView("update");
-    modelAndView.addObject("users", readUserModels);
+  //   ModelAndView modelAndView = new ModelAndView("update");
+  //   modelAndView.addObject("users", readUserModels);
 
-    return modelAndView;
-  }
-
-  
+  //   return modelAndView;
+  // }
 
 }

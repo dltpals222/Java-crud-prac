@@ -70,26 +70,49 @@ public class BaseUser {
 
   // null값 및 빈 문자열 제거
   public void removeEmptyValues() {
-    name = Arrays.stream(name).filter(v -> v != null && !v.trim().isEmpty()).toArray(String[]::new);
-    id = Arrays.stream(id).filter(v -> v != null && !v.trim().isEmpty()).toArray(String[]::new);
+    // name = Arrays.stream(name).filter(v -> v != null && !v.trim().isEmpty()).toArray(String[]::new);
+    // id = Arrays.stream(id).filter(v -> v != null && !v.trim().isEmpty()).toArray(String[]::new);
 
-    number = Arrays.stream(number).filter(Objects::nonNull).toArray(Integer[]::new);
-    deposit = Arrays.stream(deposit).filter(Objects::nonNull).toArray(Long[]::new);
-    score = Arrays.stream(score).filter(Objects::nonNull).toArray(Integer[]::new);
+    // number = Arrays.stream(number).filter(Objects::nonNull).toArray(Integer[]::new);
+    // deposit = Arrays.stream(deposit).filter(Objects::nonNull).toArray(Long[]::new);
+    // score = Arrays.stream(score).filter(Objects::nonNull).toArray(Integer[]::new);
+
+    if (name != null) {
+      name = Arrays.stream(name).filter(v -> v != null && !v.trim().isEmpty()).toArray(String[]::new);
+    }
+  
+    if (id != null) {
+      id = Arrays.stream(id).filter(v -> v != null && !v.trim().isEmpty()).toArray(String[]::new);
+    }
+  
+    if (number != null) {
+      number = Arrays.stream(number).filter(Objects::nonNull).toArray(Integer[]::new);
+    }
+  
+    if (deposit != null) {
+      deposit = Arrays.stream(deposit).filter(Objects::nonNull).toArray(Long[]::new);
+    }
+  
+    if (score != null) {
+      score = Arrays.stream(score).filter(Objects::nonNull).toArray(Integer[]::new);
+    }
   }
 
     public List<User> convertToUserList(){
     List<User> users = new ArrayList<>();
 
-    for(int i = 0; i < this.getName().length; i++){
-      User user = new User();
-      user.setName(this.name[i]);
-      user.setNumber(this.number[i]);
-      user.setId(this.id[i]);
-      user.setDeposit(this.deposit[i]);
-      user.setScore(this.score[i]);
+    if(this.getName() != null){
 
-      users.add(user);
+      for(int i = 0; i < this.getName().length; i++){
+        User user = new User();
+        user.setName(this.name[i]);
+        user.setNumber(this.number[i]);
+        user.setId(this.id[i]);
+        user.setDeposit(this.deposit[i]);
+        user.setScore(this.score[i]);
+        
+        users.add(user);
+      }
     }
 
     return users;

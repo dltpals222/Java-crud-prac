@@ -40,12 +40,14 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll("input[type=checkbox]:checked")
       ).map((checkbox) => checkbox.value);
 
+      console.log(checkedValues);
+
       if (checkedValues.length === 0) {
         alert("변경할 항목을 선택해주세요.");
         return;
       }
 
-      handleUpdateButtonClick();
+      handleUpdateButtonClick(checkedValues);
 
       //   const response = await fetch("/pages/update", {
       //     method: "Post",
