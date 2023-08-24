@@ -1,23 +1,32 @@
 package com.example.playlist.repository;
 
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.example.playlist.model.ReadUserModel;
 import com.example.playlist.model.User;
 
 @Repository
 public class BaseUserDAO {
+
+  //* JdbcTemplate
   private final JdbcTemplate jdbcTemplate;
 
   public BaseUserDAO(JdbcTemplate jdbcTemplate) {
     this.jdbcTemplate = jdbcTemplate;
   }
+
+  //*NamedParameterJdbcTemplate
+  private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
   //? create에서 사용될 메소드
   public int[] insert(List<User> users) {
@@ -40,11 +49,26 @@ public class BaseUserDAO {
   }
 
   //? update에 사용될 체크된 리스트 불러오는 메소드
-  public List<User> findByNoList(List<String> noList){
+  public List<ReadUserModel> findByNoList(List<String> noList){
     String sqlSelect = "SELECT * FROM exampleCrud WHERE no IN (:noList)";
     MapSqlParameterSource parameters = new MapSqlParameterSource();
     parameters.addValue("noList",noList);
-    List<User> foundUsers = jdbcTemplate.query(sqlSelect, new BeanPropertyRowMapper<>(User.class));
+    List<ReadUserModel> foundUsers = namedParameterJdbcTemplate.query(sqlSelect, parameters, new RowMapper<ReadUserModel>() {
+      @Override
+      public ReadUserModel mapRow(ResultSet rs, int rowNum) throws SQLException {
+        ReadUserModel readUserModel = new ReadUserModel();
+        readUserModel.setName(rs.getString("name"));
+        readUserModel.setNumber(rs.getInt("number"));
+        readUserModel.setId(rs.getString("id"));
+        readUserModel.setDeposit(rs.getLong("deposit"));
+        readUserModel.setScore(rs.getInt("score"));
+        readUserModel.setNo(rs.getInt("no"));
+
+        return readUserModel;
+        
+      }
+    
+    });
     return foundUsers;
   }
 

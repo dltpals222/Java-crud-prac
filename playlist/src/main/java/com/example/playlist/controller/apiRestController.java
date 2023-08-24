@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.playlist.model.BaseUser;
+import com.example.playlist.model.ReadUserModel;
 import com.example.playlist.model.User;
 import com.example.playlist.repository.BaseUserDAO;
 
@@ -45,11 +46,12 @@ public class apiRestController {
 
   @PostMapping(value = "update")
   @ResponseBody
-  public ResponseEntity<List<User>> updateSelectedData(@RequestBody Map<String, List<String>> data){
+  public ResponseEntity<List<ReadUserModel>> updateSelectedData(@RequestBody Map<String, List<String>> data){
     List<String> noList = data.get("values");
 
     System.out.println("values의 값들을 보기 위한 콘솔 : " + noList);
-    List<User> foundUsers = baseUserDAO.findByNoList(noList);
+    List<ReadUserModel> foundUsers = baseUserDAO.findByNoList(noList);
+    System.out.println("foundUsers : " + foundUsers);
 
     return new ResponseEntity<>(foundUsers, HttpStatus.OK);
   }
