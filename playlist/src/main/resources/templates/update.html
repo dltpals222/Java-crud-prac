@@ -17,7 +17,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="/api/update" method="post" id="updateForm" >
+        <form id="updateForm" >
           <div class="modal-body">                
             <!--* 입력값 -->
             <div class="flex-center flex-direction-column">
@@ -40,6 +40,7 @@
                 <th:block th:each="noList : ${noList}">
                   <div class="flex-center">
                     <div 
+                      name="no"
                       class="width-5percent update-no-style" 
                       th:text="${noList.no}"
                     ></div>
@@ -81,7 +82,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-            <button type="button" class="btn btn-primary">정보 수정 완료</button>
+            <button type="submit" class="btn btn-primary">정보 수정</button>
           </div>
         </form>
       </div>

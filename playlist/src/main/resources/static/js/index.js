@@ -24,8 +24,6 @@ async function fetchModule(endPoint, insertPageId, contentType = "text/html") {
       targetElement.appendChild(doc.body.firstChild);
     }
   }
-  // const infoDiv = doc.body.firstChild;
-  // document.getElementById(insertPageId).innerHTML = infoDiv.innerHTML;
 }
 
 // 불러올 html 파일 관리
@@ -43,8 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   //? update에 사용할 체크박스 값 가져오기
-  // const infoUpdate = document.getElementById("info-update");
-  // infoUpdate.addEventListener("click", async (e) => {
   document.body.addEventListener("click", async (e) => {
     if (e.target.id === "info-update") {
       e.preventDefault();
@@ -69,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // jQuery open modal
       $("#update-modal").modal("show");
 
-      // Add event listener for when the modal is hidden.
+      // 모달창을 닫을때 배경div까지 삭제
       $("#update-modal").on("hidden.bs.modal", function (e) {
         $(".modal-backdrop").remove();
       });

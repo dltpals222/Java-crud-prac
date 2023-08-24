@@ -21,3 +21,42 @@ function handleUpdateButtonClick(noList) {
     },
   });
 }
+
+$(document).on("submit", "#updateForm", function (e) {
+  e.preventDefault();
+
+  let promises = [];
+
+  $("div[name='no']").each(function () {
+    const noName = $(this).text().trim();
+    console.log(noName);
+    const url = "/api/update/" + noName;
+    console.log(url);
+
+    const formFields = $(this).siblings("input");
+
+    let data = {};
+    formFields.each(function () {
+      data[$(this).attr("name")] = $(this).val();
+    });
+
+    console.log("data 정보 : ", data);
+    console.log("url 정보 : ", url);
+
+    let promise = $.ajax({
+      type: "PATCH",
+      url: url,
+      data: JSON.stringify(data),
+      contentType: "application/json",
+    });
+
+    promises.push(promise);
+  });
+
+  console.log("promises : " + promises);
+
+  Promise.all(promises).then(() => {
+    alert("정보가 수정되었습니다.");
+    $("#update-modal").modal("hide");
+  });
+});
