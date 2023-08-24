@@ -73,7 +73,6 @@ public class pageController {
       List<ReadUserModel> foundUsers = userFindService.findByNoList(noList);
       System.out.println("noList의 길이 : " + foundUsers.size());
       model.addAttribute("noList", foundUsers);
-      model.addAttribute("noListSize", foundUsers.size());
     }
 
     // 수정할 데이터
