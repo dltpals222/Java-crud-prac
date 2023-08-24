@@ -45,17 +45,17 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const response = await fetch("/api/update", {
-        method: "POST",
+      const response = await fetch("/pages/update", {
+        method: "Post",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ values: checkedValues }),
+        body: JSON.stringify({ noList: checkedValues }),
       });
 
       if (response.ok) {
-        const updatedContent = await response.text();
-        document.getElementById("update-div").innerHTML = updatedContent;
+        const responseData = await response.json();
+        console.log("서버로부터 응답받은 데이터 : ", responseData);
       } else {
         console.error("서버에서 에러가 발생했습니다. 상태 코드: " + response.status);
       }
