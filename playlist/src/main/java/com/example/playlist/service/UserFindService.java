@@ -22,7 +22,7 @@ public class UserFindService {
     return userFindRepository.findAll();
   }
 
-  public List<ReadUserModel> findByNoList(List<String> noList) {
+  public List<ReadUserModel> findByNoList(List<Integer> noList) {
     return baseUserDAO.findByNoList(noList);
   }
 }

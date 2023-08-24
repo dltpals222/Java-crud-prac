@@ -61,8 +61,8 @@ public class pageController {
     return view;
   }
 
-  @PostMapping(value = "/update")
-  public ModelAndView update(Model model, @RequestBody List<String> noList) {
+  @GetMapping(value = "/update")
+  public ModelAndView update(Model model) {
     // 경로설정
     ModelAndView view = new ModelAndView();
     view.setViewName("update");
@@ -71,11 +71,22 @@ public class pageController {
     initTagModel(model);
 
     // 수정할 데이터
-    List<ReadUserModel> foundUsers = userFindService.findByNoList(noList);
-    model.addAttribute("updateUser", foundUsers);
-    model.addAttribute("updateUserSize", foundUsers.size());
+    // List<ReadUserModel> foundUsers = userFindService.findByNoList(selectedValues);
+    // System.out.println("foundUsers: " + foundUsers);
+    // model.addAttribute("updateUser", foundUsers);
+    // model.addAttribute("updateUserSize", foundUsers.size());
 
     return view;
+  }
+
+  @PostMapping(value = "/update")
+  public ModelAndView findByNoList(@RequestParam("selectedValues[]") List<Integer> selectedValues){
+    List<ReadUserModel> readUserModels = userFindService.findByNoList(selectedValues);
+
+    ModelAndView modelAndView = new ModelAndView("update");
+    modelAndView.addObject("users", readUserModels);
+
+    return modelAndView;
   }
 
   

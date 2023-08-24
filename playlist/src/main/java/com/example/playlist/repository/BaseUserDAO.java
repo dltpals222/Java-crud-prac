@@ -53,7 +53,7 @@ public class BaseUserDAO {
   }
 
   //? update에 사용될 체크된 리스트 불러오는 메소드
-  public List<ReadUserModel> findByNoList(List<String> noList){
+  public List<ReadUserModel> findByNoList(List<Integer> noList){
     String sqlSelect = "SELECT * FROM exampleCrud WHERE no IN (:noList)";
     MapSqlParameterSource parameters = new MapSqlParameterSource();
     parameters.addValue("noList",noList);

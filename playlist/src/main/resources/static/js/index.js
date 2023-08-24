@@ -5,6 +5,7 @@
  * @param {string} contentType 기본값은 text/html 그 이외라면 추가
  */
 async function fetchModule(endPoint, insertPageId, contentType = "text/html") {
+  // fetch 데이터 처리
   const response = await fetch(endPoint);
   const result = await response.text();
 
@@ -12,7 +13,6 @@ async function fetchModule(endPoint, insertPageId, contentType = "text/html") {
   const doc = parser.parseFromString(result, contentType);
   const infoDiv = doc.body.firstChild;
 
-  //HTML에 입력시킬 태그
   document.getElementById(insertPageId).innerHTML = infoDiv.innerHTML;
 }
 
@@ -45,20 +45,22 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const response = await fetch("/pages/update", {
-        method: "Post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ noList: checkedValues }),
-      });
+      handleUpdateButtonClick();
 
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log("서버로부터 응답받은 데이터 : ", responseData);
-      } else {
-        console.error("서버에서 에러가 발생했습니다. 상태 코드: " + response.status);
-      }
+      //   const response = await fetch("/pages/update", {
+      //     method: "Post",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify({ noList: checkedValues }),
+      //   });
+
+      //   if (response.ok) {
+      //     const responseData = await response.json();
+      //     console.log("서버로부터 응답받은 데이터 : ", responseData);
+      //   } else {
+      //     console.error("서버에서 에러가 발생했습니다. 상태 코드: " + response.status);
+      //   }
     });
   });
 });
