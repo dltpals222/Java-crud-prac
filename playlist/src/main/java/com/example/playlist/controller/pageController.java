@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.playlist.model.ReadUserModel;
@@ -58,8 +61,8 @@ public class pageController {
     return view;
   }
 
-  @GetMapping(value = "/update")
-  public ModelAndView update(Model model) {
+  @PostMapping(value = "/update")
+  public ModelAndView update(Model model, @RequestBody List<String> noList) {
     // 경로설정
     ModelAndView view = new ModelAndView();
     view.setViewName("update");
@@ -67,7 +70,14 @@ public class pageController {
     // 표 만들기 위한 정보
     initTagModel(model);
 
+    // 수정할 데이터
+    List<ReadUserModel> foundUsers = userFindService.findByNoList(noList);
+    model.addAttribute("updateUser", foundUsers);
+    model.addAttribute("updateUserSize", foundUsers.size());
+
     return view;
   }
+
+  
 
 }
