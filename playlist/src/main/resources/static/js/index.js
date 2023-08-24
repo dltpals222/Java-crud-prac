@@ -31,22 +31,34 @@ document.addEventListener("DOMContentLoaded", () => {
     await fetchModule("/pages/update", "update-div");
 
     // update에 사용할 체크박스 값 가져오기
-    (function ($) {
-      $(document).ready(function () {
-        $("#info-update").click(function (e) {
-          e.preventDefault();
-          console.log("info-update 버튼이 클릭되었습니다.");
+    const infoUpdate = document.getElementById("info-update");
+    infoUpdate.addEventListener("click", async (e) => {
+      e.preventDefault();
+      console.log("info-update 버튼이 클릭되었습니다.");
 
-          var checkedValues = $("input[type=checkbox]:checked")
-            .map(function () {
-              return this.value;
-            })
-            .get()
-            .join(",");
+      const checkedValues = Array.from(
+        document.querySelectorAll("input[type=checkbox]:checked")
+      ).map((checkbox) => checkbox.value);
 
-          // window.location.href = "/pages/update?values=" + checkedValues;
-        });
+      if (checkedValues.length === 0) {
+        alert("변경할 항목을 선택해주세요.");
+        return;
+      }
+
+      const response = await fetch("/api/update", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ values: checkedValues }),
       });
-    })(jQuery); // update 끝부분
+
+      if (response.ok) {
+        const updatedContent = await response.text();
+        document.getElementById("update-div").innerHTML = updatedContent;
+      } else {
+        console.error("서버에서 에러가 발생했습니다. 상태 코드: " + response.status);
+      }
+    });
   });
 });

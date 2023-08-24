@@ -61,7 +61,7 @@ public class pageController {
   }
 
   @GetMapping(value = "/update")
-  public ModelAndView update(Model model) {
+  public ModelAndView update(Model model, @RequestParam(value = "values", required = false) String valuesString) {
     // 경로설정
     ModelAndView view = new ModelAndView();
     view.setViewName("update");

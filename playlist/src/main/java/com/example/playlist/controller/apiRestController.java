@@ -2,9 +2,14 @@ package com.example.playlist.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -36,5 +41,15 @@ public class apiRestController {
     RedirectView redirectView = new RedirectView();
     redirectView.setUrl("http://localhost:8080/");
     return redirectView;
-}
+  }
+
+  @PostMapping(value = "update")
+  @ResponseBody
+  public ResponseEntity<?> updateSelectedData(@RequestBody Map<String, List<String>> data){
+    List<String> checkedValues = data.get("values");
+
+    System.out.println("values의 값들을 보기 위한 콘솔 : " + checkedValues);
+
+    return new ResponseEntity<>("수정 완료되었습니다.", HttpStatus.OK);
+  }
 }
