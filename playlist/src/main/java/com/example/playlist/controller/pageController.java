@@ -75,23 +75,7 @@ public class pageController {
       model.addAttribute("noList", foundUsers);
     }
 
-    // 수정할 데이터
-    // List<ReadUserModel> foundUsers = userFindService.findByNoList(selectedValues);
-    // System.out.println("foundUsers: " + foundUsers);
-    // model.addAttribute("updateUser", foundUsers);
-    // model.addAttribute("updateUserSize", foundUsers.size());
-
     return view;
   }
-
-  // @PostMapping(value = "/update")
-  // public ModelAndView findByNoList(@RequestParam("lang") List<Integer> selectedValues){
-  //   List<ReadUserModel> readUserModels = userFindService.findByNoList(selectedValues);
-
-  //   ModelAndView modelAndView = new ModelAndView("update");
-  //   modelAndView.addObject("users", readUserModels);
-
-  //   return modelAndView;
-  // }
 
 }

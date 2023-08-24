@@ -21,10 +21,3 @@ function handleUpdateButtonClick(noList) {
     },
   });
 }
-
-const infoUpdate = document.getElementById("info-update");
-
-infoUpdate.addEventListener("click", async () => {
-  //* 유저정보 수정
-  await fetchModule("/pages/update", "update-div");
-});

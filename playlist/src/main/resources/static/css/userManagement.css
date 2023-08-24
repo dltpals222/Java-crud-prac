@@ -156,3 +156,20 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+/*todo update css */
+.update-no-style {
+  /* cursor를 default로 설정 */
+  cursor: default;
+
+  /* background-color를 원하는 값으로 변경 */
+  background-color: white;
+  border-width: 1px;
+  border-style: inset;
+
+  /* border-color를 원하는 값으로 변경 */
+  border-color: black;
+
+  /* 같은 크기로 설정 */
+  padding: 1px;
+}

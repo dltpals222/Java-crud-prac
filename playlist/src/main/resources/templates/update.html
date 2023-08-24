@@ -37,45 +37,39 @@
 
               <div class="ctnr-input">
                 <!--* input checkbox 반복 -->
-                <th:block th:each="noList, index : ${noList}">
-                  <div th:id="'info-'+${index}" class="flex-center">
+                <th:block th:each="noList : ${noList}">
+                  <div class="flex-center">
                     <div 
-                      id="no" 
-                      class="width-5percent" 
+                      class="width-5percent update-no-style" 
                       th:text="${noList.no}"
                     ></div>
                     <input 
                       type="text" 
                       name="name" 
-                      id="name" 
                       class="width-15percent"
                       th:value="${noList.name}"
                     >
                     <input 
                       type="number" 
                       name="number" 
-                      id="number" 
                       class="width-10percent" 
                       th:value="${noList.number}"
                     >
                     <input 
                       type="text" 
                       name="id" 
-                      id="id" 
                       class="width-20percent" 
                       th:value="${noList.id}"
                     >
                     <input 
                       type="number" 
                       name="deposit" 
-                      id="deposit" 
                       class="width-30percent" 
                       th:value="${noList.deposit}"
                     >
                     <input 
                       type="number" 
                       name="score" 
-                      id="score" 
                       class="width-20percent" 
                       th:value="${noList.score}"
                     >

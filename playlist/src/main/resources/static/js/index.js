@@ -11,15 +11,26 @@ async function fetchModule(endPoint, insertPageId, contentType = "text/html") {
 
   const parser = new DOMParser();
   const doc = parser.parseFromString(result, contentType);
-  const infoDiv = doc.body.firstChild;
 
-  document.getElementById(insertPageId).innerHTML = infoDiv.innerHTML;
+  const targetElement = document.getElementById(insertPageId);
+
+  // 기존 targetElement가 있으면 제거 먼저 실행 후 새롭게 생성하는 로직
+  if (targetElement) {
+    while (targetElement.firstChild) {
+      targetElement.removeChild(targetElement.firstChild);
+    }
+
+    while (doc.body.firstChild) {
+      targetElement.appendChild(doc.body.firstChild);
+    }
+  }
+  // const infoDiv = doc.body.firstChild;
+  // document.getElementById(insertPageId).innerHTML = infoDiv.innerHTML;
 }
-const umInfo = document.getElementById("um-info");
-const infoUpdate = document.getElementById("info-update");
 
 // 불러올 html 파일 관리
 document.addEventListener("DOMContentLoaded", () => {
+  const umInfo = document.getElementById("um-info");
   umInfo.addEventListener("click", async () => {
     //* 정보
     await fetchModule("/pages/userInfo", "user-info");
@@ -27,8 +38,15 @@ document.addEventListener("DOMContentLoaded", () => {
     //* 유저정보 입력
     await fetchModule("/pages/create", "create-div");
 
-    //? update에 사용할 체크박스 값 가져오기
-    infoUpdate.addEventListener("click", async (e) => {
+    //* 유저정보 수정
+    // await fetchModule("/pages/update?noList=" + checkedValues.join(","), "update-div");
+  });
+
+  //? update에 사용할 체크박스 값 가져오기
+  // const infoUpdate = document.getElementById("info-update");
+  // infoUpdate.addEventListener("click", async (e) => {
+  document.body.addEventListener("click", async (e) => {
+    if (e.target.id === "info-update") {
       e.preventDefault();
       console.log("info-update 버튼이 클릭되었습니다.");
 
@@ -43,12 +61,18 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      handleUpdateButtonClick(checkedValues);
-    });
-  });
-});
+      //* 유저정보 수정
+      await fetchModule("/pages/update?noList=" + checkedValues.join(","), "update-div");
 
-infoUpdate.addEventListener("click", async () => {
-  //* 유저정보 수정
-  await fetchModule("/pages/update", "update-div");
+      handleUpdateButtonClick(checkedValues);
+
+      // jQuery open modal
+      $("#update-modal").modal("show");
+
+      // Add event listener for when the modal is hidden.
+      $("#update-modal").on("hidden.bs.modal", function (e) {
+        $(".modal-backdrop").remove();
+      });
+    }
+  });
 });
