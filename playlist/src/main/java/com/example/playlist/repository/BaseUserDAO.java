@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -20,13 +22,15 @@ public class BaseUserDAO {
 
   //* JdbcTemplate
   private final JdbcTemplate jdbcTemplate;
-
-  public BaseUserDAO(JdbcTemplate jdbcTemplate) {
-    this.jdbcTemplate = jdbcTemplate;
-  }
-
+  
   //*NamedParameterJdbcTemplate
   private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+  
+  // @Autowired 키워드 사용하려 했으나 불필요하여 삭제
+  public BaseUserDAO(DataSource dataSource){
+    this.jdbcTemplate = new JdbcTemplate(dataSource);
+    this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+  }
 
   //? create에서 사용될 메소드
   public int[] insert(List<User> users) {
