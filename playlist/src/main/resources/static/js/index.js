@@ -35,9 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //* 유저정보 입력
     await fetchModule("/pages/create", "create-div");
-
-    //* 유저정보 수정
-    // await fetchModule("/pages/update?noList=" + checkedValues.join(","), "update-div");
   });
 
   //? update에 사용할 체크박스 값 가져오기
@@ -49,8 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const checkedValues = Array.from(
         document.querySelectorAll("input[type=checkbox]:checked")
       ).map((checkbox) => checkbox.value);
-
-      console.log(checkedValues);
 
       if (checkedValues.length === 0) {
         alert("변경할 항목을 선택해주세요.");

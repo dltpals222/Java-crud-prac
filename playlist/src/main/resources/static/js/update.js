@@ -1,3 +1,4 @@
+//? 체크박스 정보 전달
 function handleUpdateButtonClick(noList) {
   console.log("noList : ", noList);
   const queryStringParts = noList.map((value) => `noList=${value}`);
@@ -10,8 +11,6 @@ function handleUpdateButtonClick(noList) {
   $.ajax({
     type: "GET",
     url: url,
-    // data: JSON.stringify(selectedValues),
-    // contentType: "application/json",
     success: function (response) {
       console.log("데이터가 성공적으로 전달되었습니다.");
     },
@@ -22,6 +21,7 @@ function handleUpdateButtonClick(noList) {
   });
 }
 
+//? 정보 수정
 $(document).on("submit", "#updateForm", function (e) {
   e.preventDefault();
 
