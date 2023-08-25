@@ -66,6 +66,10 @@
   width: 35%;
 }
 
+.width-100percent {
+  width: 100%;
+}
+
 .width-webkit-fill-available {
   width: -webkit-fill-available;
 }

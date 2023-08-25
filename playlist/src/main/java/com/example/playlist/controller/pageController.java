@@ -71,7 +71,26 @@ public class pageController {
     // 데이터 처리
     if(noList != null && !noList.isEmpty()){
       List<ReadUserModel> foundUsers = userFindService.findByNoList(noList);
-      System.out.println("noList의 길이 : " + foundUsers.size());
+      System.out.println("update의 noList의 길이 : " + foundUsers.size());
+      model.addAttribute("noList", foundUsers);
+    }
+
+    return view;
+  }
+
+  @GetMapping(value = "/delete")
+  public ModelAndView delete(@RequestParam(value = "noList",required= false) List<Integer> noList,Model model) {
+    // 경로설정
+    ModelAndView view = new ModelAndView();
+    view.setViewName("delete");
+
+    // 표 만들기 위한 정보
+    initTagModel(model);
+
+    // 데이터 처리
+    if(noList != null && !noList.isEmpty()){
+      List<ReadUserModel> foundUsers = userFindService.findByNoList(noList);
+      System.out.println("delete의 noList의 길이 : " + foundUsers.size());
       model.addAttribute("noList", foundUsers);
     }
 

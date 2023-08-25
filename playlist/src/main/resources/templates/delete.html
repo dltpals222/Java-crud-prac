@@ -22,7 +22,7 @@
             <div class="flex-center flex-direction-column">
               <div class="flex-center crtn-tagName" style="width: 100%">
                 <th:block th:each="ulList, index : ${tagModel.ulList}">
-                  <th:block th:if="${index.index > 1}">
+                  <th:block th:if="${index.index >= 1}">
                     <div
                       th:id="'t-'+${ulList}"
                       class="flex-center flex-direction-column"
@@ -34,15 +34,28 @@
               </div>
               <!-- class="crtn-tagName" 끝부분 -->
 
-              <div class="ctnr-input">
+              <div class="ctnr-input width-100percent">
                 <!--* input 10번 반복 -->
-                <th:block th:each="i : ${#numbers.sequence(0,9)}">
+                <th:block th:each="noList : ${noList}">
                   <div class="flex-center">
-                    <div class="width-15percent"></div>
-                    <div class="width-10percent"></div>
-                    <div class="width-20percent"></div>
-                    <div class="width-35percent"></div>
-                    <div class="width-20percent"></div>
+                    <div
+                      th:text="${noList.no}"
+                      class="width-5percent modal-read-style flex-center"
+                    ></div>
+                    <div th:text="${noList.name}" class="width-15percent modal-read-style"></div>
+                    <div
+                      th:text="${noList.number}"
+                      class="width-10percent modal-read-style flex-justify-end"
+                    ></div>
+                    <div th:text="${noList.id}" class="width-20percent modal-read-style"></div>
+                    <div
+                      th:text="${noList.deposit}"
+                      class="width-30percent modal-read-style flex-justify-end"
+                    ></div>
+                    <div
+                      th:text="${noList.score}"
+                      class="width-20percent modal-read-style flex-justify-end"
+                    ></div>
                   </div>
                 </th:block>
               </div>
@@ -51,7 +64,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-            <button type="button" class="btn btn-primary">삭제하기</button>
+            <button type="submit" class="btn btn-primary">삭제하기</button>
           </div>
         </form>
       </div>
