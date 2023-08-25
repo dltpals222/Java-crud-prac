@@ -61,7 +61,7 @@ public class apiRestController {
     System.out.println("delete의 no정보 : " + no);
     int rowsAffected = baseUserDAO.deleteByNo(no);
         if(rowsAffected > 0) {
-      System.out.println("데이터가 성공적으로 수정되었습니다.");
+      System.out.println("데이터가 성공적으로 삭제되었습니다.");
       return new ResponseEntity<>(HttpStatus.OK);
     } else {
       System.out.println("데이터를 찾을 수 없습니다.");

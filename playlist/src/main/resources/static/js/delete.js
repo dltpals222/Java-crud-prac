@@ -37,8 +37,6 @@ $(document).on("submit", "#userDeleteForm", function (e) {
     const noName = $(this).text().trim();
     console.log(noName);
     const url = "/api/delete/" + noName;
-    console.log(url);
-
     console.log("url 정보 : ", url);
 
     let promise = $.ajax({
@@ -47,13 +45,12 @@ $(document).on("submit", "#userDeleteForm", function (e) {
       contentType: "application/json",
     }).catch((error) => {
       console.error("delete Error : ", error);
-      alert("delete.js에서 에러가 발생했습니다. : " + error.statusText);
     });
 
     promises.push(promise);
   });
 
-  console.log("promises : " + promises);
+  console.log("promises length : " + promises.length);
 
   Promise.all(promises).then(() => {
     alert("정보가 삭제되었습니다.");
