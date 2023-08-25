@@ -56,7 +56,7 @@ public class apiRestController {
     }
   }
 
-    @DeleteMapping(value = "/delete")
+    @DeleteMapping(value = "/delete/{no}")
   public ResponseEntity<?> deleteUser(@PathVariable String no) {
     System.out.println("delete의 no정보 : " + no);
     int rowsAffected = baseUserDAO.deleteByNo(no);
