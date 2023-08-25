@@ -66,4 +66,34 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
+
+  //? delete
+  document.body.addEventListener("click", async (e) => {
+    if (e.target.id === "info-delete") {
+      e.preventDefault();
+      console.log("info-delete 버튼이 클릭되었습니다.");
+
+      const checkedValues = Array.from(
+        document.querySelectorAll("input[type=checkbox]:checked")
+      ).map((checkbox) => checkbox.value);
+
+      if (checkedValues.length === 0) {
+        alert("삭제할 항목을 선택해주세요.");
+        return;
+      }
+
+      //* 유저정보
+      await fetchModule("/pages/delete?noList=" + checkedValues.join(","), "delete-div");
+
+      handleDeleteButtonClick(checkedValues);
+
+      // jQuery open modal
+      $("#delete-modal").modal("show");
+
+      // 모달창을 닫을때 배경div까지 삭제
+      $("#delete-modal").on("hidden.bs.modal", function (e) {
+        $(".modal-backdrop").remove();
+      });
+    }
+  });
 });
