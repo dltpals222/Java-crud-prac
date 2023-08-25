@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,6 +48,19 @@ public class apiRestController {
   public ResponseEntity<?> updateUser(@PathVariable String no, @RequestBody User updateUser){
     int rowsAffected = baseUserDAO.updateByNo(no, updateUser);
     if(rowsAffected > 0) {
+      System.out.println("데이터가 성공적으로 수정되었습니다.");
+      return new ResponseEntity<>(HttpStatus.OK);
+    } else {
+      System.out.println("데이터를 찾을 수 없습니다.");
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+  }
+
+    @DeleteMapping(value = "/delete")
+  public ResponseEntity<?> deleteUser(@PathVariable String no) {
+    System.out.println("delete의 no정보 : " + no);
+    int rowsAffected = baseUserDAO.deleteByNo(no);
+        if(rowsAffected > 0) {
       System.out.println("데이터가 성공적으로 수정되었습니다.");
       return new ResponseEntity<>(HttpStatus.OK);
     } else {

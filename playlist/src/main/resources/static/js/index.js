@@ -82,6 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      console.log("checkbox: " + checkedValues);
+
       //* 유저정보
       await fetchModule("/pages/delete?noList=" + checkedValues.join(","), "delete-div");
 

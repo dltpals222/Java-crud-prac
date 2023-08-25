@@ -16,7 +16,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="/api/delete" method="post" id="addInfoForm">
+        <form id="userDeleteForm">
           <div class="modal-body">
             <!--* 입력값 -->
             <div class="flex-center flex-direction-column">
@@ -35,26 +35,35 @@
               <!-- class="crtn-tagName" 끝부분 -->
 
               <div class="ctnr-input width-100percent">
-                <!--* input 10번 반복 -->
                 <th:block th:each="noList : ${noList}">
                   <div class="flex-center">
                     <div
                       th:text="${noList.no}"
+                      name="no"
                       class="width-5percent modal-read-style flex-center"
                     ></div>
-                    <div th:text="${noList.name}" class="width-15percent modal-read-style"></div>
+                    <div
+                      th:text="${noList.name}"
+                      class="width-15percent modal-read-style flex-center"
+                    ></div>
                     <div
                       th:text="${noList.number}"
                       class="width-10percent modal-read-style flex-justify-end"
+                      style="padding-right: 3px"
                     ></div>
-                    <div th:text="${noList.id}" class="width-20percent modal-read-style"></div>
+                    <div
+                      th:text="${noList.id}"
+                      class="width-20percent modal-read-style flex-center"
+                    ></div>
                     <div
                       th:text="${noList.deposit}"
                       class="width-30percent modal-read-style flex-justify-end"
+                      style="padding-right: 3px"
                     ></div>
                     <div
                       th:text="${noList.score}"
                       class="width-20percent modal-read-style flex-justify-end"
+                      style="padding-right: 3px"
                     ></div>
                   </div>
                 </th:block>

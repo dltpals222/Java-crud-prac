@@ -93,4 +93,11 @@ public class BaseUserDAO {
     
   }
 
+  //? delete 쿼리 및 삭제
+  public int deleteByNo(String no){
+    String sqlDelete = "DELETE FROM examplecrud WHERE no = ?"; 
+    int rowsAffected = jdbcTemplate.update(sqlDelete, no);
+    return rowsAffected;
+  }
+
 }

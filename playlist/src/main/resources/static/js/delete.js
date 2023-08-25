@@ -20,3 +20,43 @@ function handleDeleteButtonClick(noList) {
     },
   });
 }
+
+//? 정보 삭제
+$(document).on("submit", "#userDeleteForm", function (e) {
+  e.preventDefault();
+
+  const selectedNos = $("div[name='no']");
+  if (selectedNos.length === 0) {
+    alert("삭제할 정보가 없습니다.");
+    return;
+  }
+
+  let promises = [];
+
+  selectedNos.each(function () {
+    const noName = $(this).text().trim();
+    console.log(noName);
+    const url = "/api/delete/" + noName;
+    console.log(url);
+
+    console.log("url 정보 : ", url);
+
+    let promise = $.ajax({
+      type: "DELETE",
+      url: url,
+      contentType: "application/json",
+    }).catch((error) => {
+      console.error("delete Error : ", error);
+      alert("delete.js에서 에러가 발생했습니다. : " + error.statusText);
+    });
+
+    promises.push(promise);
+  });
+
+  console.log("promises : " + promises);
+
+  Promise.all(promises).then(() => {
+    alert("정보가 삭제되었습니다.");
+    $("#delete-modal").modal("hide");
+  });
+});
